@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<div class="container">
+
+    <h1 class="text-center">Enter Employee Data</h1>
+
+    <div class="form-continer my-3">
+      <form method="POST" action="/">
+        <div class="mb-3">
+          <label  class="form-label">Name </label>
+          <input type="text" class="form-control" id="name" name="name" placeholder="Your Name, XYZ">
+        </div>
+        <div class="mb-3 my-3">
+          <label  class="form-label">Email address</label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+        </div>
+
+        <div class="button text-center">
+        <button type="reset" class="btn btn-danger">Reset</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+        
+      </form>
+    </div>
+
+     <h1 class="text-center">All Employee Data</h1>
+    <div class="container text-center">
+        <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">S. No.</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Action</th>
+    
+    </tr>
+  </thead>
+  <tbody>
+    {% for i in allemployee %}
+        <tr>
+            <th scope="row">{{loop.index}}</th>
+            <td>{{i.name}}</td>
+            <td>{{i.email}}</td>
+            <td>
+              <!-- <button type="button" class="btn btn-danger">Delete</button>
+              <button type="button" class="btn btn-primary">Update</button> -->
+              <a href="/update/{{i.sno}}" class="btn btn-primary btn-sm" role="button">Update</a>
+              <a href="/delete/{{i.sno}}" class="btn btn-danger btn-sm" role="button">Delete</a>
+            </td>
+
+
+        </tr>
+    {% endfor %}
+    
+
+  </tbody>
+</table>
+    </div>
+</div>    
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+{% endblock body  %}
